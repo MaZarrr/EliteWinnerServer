@@ -1,0 +1,92 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  token: String!
+  userUid: String!
+  userHash: String!
+  phone: String!
+  email: String!
+  password: String
+  passwordEmail: String!
+  role: UserRole!
+  verified: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum UserRole {
+  Client
+  Owner
+  Delivery
+}
+
+type EditProfileOutput {
+  error: String
+  ok: Boolean!
+}
+
+type LoginOutput {
+  error: String
+  ok: Boolean!
+  token: String
+}
+
+type UserProfileOutput {
+  error: String
+  ok: Boolean!
+  user: User
+}
+
+type VerifyEmailOutput {
+  error: String
+  ok: Boolean!
+}
+
+type VerifyPhoneOutput {
+  error: String
+  ok: Boolean!
+}
+
+type Query {
+  me: User!
+  userProfile(userId: Float!): UserProfileOutput!
+}
+
+type Mutation {
+  loginPhone(input: LoginInput!): LoginOutput!
+  loginEmail(input: LoginInputEmail!): LoginOutput!
+  editProfile(input: EditProfileInput!): EditProfileOutput!
+  verifytEmail(input: VerifyEmaiInput!): VerifyEmailOutput!
+  verifyPhone(input: VerifyPhoneInput!): VerifyPhoneOutput!
+}
+
+input LoginInput {
+  phone: String!
+  password: String
+}
+
+input LoginInputEmail {
+  email: String!
+  passwordEmail: String!
+}
+
+input EditProfileInput {
+  phone: String
+  password: String
+}
+
+input VerifyEmaiInput {
+  code: Float!
+}
+
+input VerifyPhoneInput {
+  code: Float!
+}
